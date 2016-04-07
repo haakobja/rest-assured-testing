@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.ws.rs.core.Response.Status;
 import java.util.Arrays;
 
 import static com.jayway.restassured.RestAssured.given;
@@ -30,7 +31,7 @@ public class EndpointsIT {
 
         response.then()
                 .assertThat()
-                .statusCode(javax.ws.rs.core.Response.Status.OK.getStatusCode());
+                .statusCode(Status.OK.getStatusCode());
 
         final Todo[] liste = response.getBody()
                 .as(Todo[].class);
@@ -52,7 +53,7 @@ public class EndpointsIT {
 
         response.then()
                 .assertThat()
-                .statusCode(javax.ws.rs.core.Response.Status.OK.getStatusCode())
+                .statusCode(Status.OK.getStatusCode())
                 .and()
                 .body("[1].todo", IsEqual.equalTo("Hello World"));
     }
@@ -64,6 +65,6 @@ public class EndpointsIT {
 
         response.then()
                 .assertThat()
-                .statusCode(javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+                .statusCode(Status.INTERNAL_SERVER_ERROR.getStatusCode());
     }
 }
