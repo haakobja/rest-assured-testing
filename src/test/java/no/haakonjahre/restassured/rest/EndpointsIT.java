@@ -25,7 +25,7 @@ public class EndpointsIT {
     }
 
     @Test
-    public void hentListeDeserialiser() throws Exception {
+    public void hentListeSjekkOmFullDeserialiser() throws Exception {
         final Response response = given()
                 .get();
 
@@ -56,6 +56,15 @@ public class EndpointsIT {
                 .statusCode(Status.OK.getStatusCode())
                 .and()
                 .body("[1].todo", IsEqual.equalTo("Hello World"));
+    }
+
+    @Test
+    public void hentMap() throws Exception {
+        final Response response = given().get("map");
+
+        response.then().assertThat().statusCode(Status.OK.getStatusCode())
+                .and().body("0.todo", IsEqual.equalTo("Melding"));
+
     }
 
     @Test
